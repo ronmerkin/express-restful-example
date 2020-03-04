@@ -1,9 +1,6 @@
 'use strict'
 
-const localCache = {
-    blockChainObj: null,
-    blockChainPricesObj: null
-}
+const localCache = {}
 
 const saveToLocalCache = (mainKey, values) => {
     if (localCache[mainKey]) {
@@ -17,7 +14,7 @@ const saveToLocalCache = (mainKey, values) => {
 }
 
 const getFromLocalCache = (mainKey) => {
-    return localCache.mainKey ? localCache.mainKey : null
+    return localCache[mainKey] ? localCache[mainKey] : null
 }
 
 module.exports = {

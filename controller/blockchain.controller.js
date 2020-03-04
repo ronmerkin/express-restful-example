@@ -12,9 +12,16 @@ const getBlockChainList = async (req, res, next) => {
 }
 
 const getSymbolsPrices = async (req, res, next) => {
-    const priceSymbolsArr = req.query.pricesSymbol
-    const result = await blockchainService.getSymbolsPrices(priceSymbolsArr)
-    res.json(result)
+    try {
+        if (!req.query.pricesSymbol) {
+            return res.status(404).send(`Haven't recieved neseccary parameters`)
+        }
+        const priceSymbolsArr = req.query.pricesSymbol
+        const result = await blockchainService.getSymbolsPrices(priceSymbolsArr)
+        res.json(result)    
+    } catch (err) {
+        res.status(400).send(err.message)       
+    }
 }
 
 module.exports = {
